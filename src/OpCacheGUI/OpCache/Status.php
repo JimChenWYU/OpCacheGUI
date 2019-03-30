@@ -49,17 +49,23 @@ class Status
     private $statusData;
 
     /**
+     * @var array The include directories
+     */
+    private $include;
+
+    /**
      * Creates instance
      *
      * @param \OpCacheGUI\Format\Byte     $byteFormatter Formatter of byte values
      * @param \OpCacheGUI\I18n\Translator $translator    A translator
      * @param array                       $statusData    The (unfiltered) output of opcache_get_status()
      */
-    public function __construct(Byte $byteFormatter, Translator $translator, array $statusData)
+    public function __construct(Byte $byteFormatter, Translator $translator, array $statusData, array $include = array())
     {
         $this->byteFormatter = $byteFormatter;
         $this->translator    = $translator;
         $this->statusData    = $statusData;
+        $this->include = $include;
     }
 
     /**
@@ -252,6 +258,12 @@ class Status
         foreach ($this->statusData['scripts'] as $script) {
             if (isset($script['timestamp']) && $script['timestamp'] === 0) {
                 continue;
+            }
+
+            foreach ($this->include as $include) {
+                if (strpos(dirname($script['full_path']), $include) === false) {
+                    continue 2;
+                }
             }
 
             $timestamp = 'N/A';

@@ -1,4 +1,6 @@
 .idea/
 /public/.htaccess
-config.php
 vendor
+.env
+whitelist.php
+directories.php

@@ -39,15 +39,14 @@ use OpCacheGUI\Network\Router;
  * Multiple addresses or ranges can be defined
  */
 return [
-    'username'        => 'peehaa',
-    'password'        => '$2y$14$kHoRlbxPF7Bf1903cDMTgeYBsFgF8aJA46LIH9Nsg4/ocDa9HTTbe',
-    'whitelist'       => [
-        'localhost',
-    ],
-    'language'        => 'en',
-    'timezone'        => 'Europe/Amsterdam',
+    'username'        => getenv('PASSWORD'),
+    'password'        => getenv('PASSWORD'),
+    'whitelist'       => require __DIR__ . '/whitelist.php',
+    'directories'     => require __DIR__ . '/directories.php',
+    'language'        => getenv('LANG'),
+    'timezone'        => getenv('TIMEZONE'),
     'error_reporting' => E_ALL,
-    'display_errors'  => 'Off',
-    'log_errors'      => 'On',
+    'display_errors'  => getenv('DISPLAY_ERRORS'),
+    'log_errors'      => getenv('LOG_ERRORS'),
     'uri_scheme'      => Router::URL_REWRITE
 ];

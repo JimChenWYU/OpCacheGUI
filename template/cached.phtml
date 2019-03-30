@@ -1,5 +1,10 @@
 <?php
-$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
+$status = new OpCacheGUI\OpCache\Status(
+  $this->byteFormatter, 
+  $this->translator, 
+  opcache_get_status(),
+  $this->configuration['directories']
+);
 
 $directories = [];
 foreach($status->getCachedScripts() as $data) {

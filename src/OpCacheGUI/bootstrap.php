@@ -12,9 +12,9 @@
  */
 namespace OpCacheGUI;
 
-use OpCacheGUI\Core\Autoloader;
+use Dotenv\Dotenv;
 
-require_once __DIR__ . '/Core/Autoloader.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
-$autoloader = new Autoloader(__NAMESPACE__, dirname(__DIR__));
-$autoloader->register();
+$dotenv = Dotenv::create(__DIR__ . '/../../');
+$dotenv->load();

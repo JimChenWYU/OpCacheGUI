@@ -12,8 +12,21 @@
             "role": "developer"
         }
     ],
+    "scripts": {
+        "generate": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
+            "@php -r \"file_exists('whitelist.php') || copy('whitelist.example.php', 'whitelist.php');\"",
+            "@php -r \"file_exists('directories.php') || copy('directories.example.php', 'directories.php');\""
+        ]
+    },
+    "autoload": {
+        "psr-4": {
+            "OpCacheGUI\\": "./src/OpCacheGUI"
+        }
+    },
     "require": {
-        "php": "^7"
+        "php": ">=5.5",
+        "vlucas/phpdotenv": "^3.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^6"

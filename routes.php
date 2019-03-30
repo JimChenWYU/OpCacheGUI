@@ -43,8 +43,9 @@ $router->get('configuration', function() use ($htmlTemplate, $byteFormatter, $tr
     ]);
 });
 
-$router->get('cached-scripts', function() use ($htmlTemplate, $byteFormatter, $csrfToken, $translator) {
+$router->get('cached-scripts', function() use ($htmlTemplate, $byteFormatter, $csrfToken, $translator, $configuration) {
     return $htmlTemplate->render('cached.phtml', [
+        'configuration' => $configuration,
         'byteFormatter' => $byteFormatter,
         'csrfToken'     => $csrfToken,
         'active'        => 'cached',
